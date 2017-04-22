@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
+    public function findByNom($nom)
+    {
+        $qb = $this->createQueryBuilder('article');
+
+        $qb
+            ->where('article.nom LIKE :nom')
+            ->setParameter('nom', '%'.$nom.'%')
+
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

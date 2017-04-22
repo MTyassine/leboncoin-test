@@ -19,11 +19,19 @@ class ArticleController extends Controller
      * Lists all article entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $nom = $request->get('nom');
+
         $em = $this->getDoctrine()->getManager();
 
-        $articles = $em->getRepository('CommercialBundle:Article')->findAll();
+        if($nom){
+            $articles = $em->getRepository('CommercialBundle:Article')->findByNom($nom);
+        }else{
+            $articles = $em->getRepository('CommercialBundle:Article')->findAll();
+        }
+
+
 
         return $this->render('CommercialBundle:article:index.html.twig', array(
             'articles' => $articles,
