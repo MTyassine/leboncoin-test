@@ -68,6 +68,28 @@ class Article
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="CommercialBundle\Entity\CategorieArticle", inversedBy="article")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $categorie;
+
+    /**
+     * @return mixed
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * @param mixed $categorie
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+    }
+
 
     /**
      * Get id

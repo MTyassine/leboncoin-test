@@ -4,46 +4,57 @@
     <h1>Articles list</h1>
 
     <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for article in articles %}
             <tr>
-                <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
-                <td>{{ article.nom }}</td>
-                <td>{{ article.prix }}</td>
-                <td>{{ article.description }}</td>
-                <td>{{ article.image }}</td>
-                <td>{% if article.createdAt %}{{ article.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('article_show', { 'id': article.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('article_edit', { 'id': article.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td width="30%"><img src="{{ asset('uploads/article/' ~ article.image) }}" style="width:150px;height:150px;margin-right:10px"/></td>
+                <td width="40%"> <a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.nom }}</a><br><br>{{ article.description }}<br><br>{{ article.prix }}</td>
+                <td>{% if article.createdAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
         {% endfor %}
-        </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('article_new') }}">Create a new article</a>
-        </li>
-    </ul>
+
+    {#<table>#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<th>Nom</th>#}
+                {#<th>Prix</th>#}
+                {#<th>Description</th>#}
+                {#<th>Image</th>#}
+                {#<th>Createdat</th>#}
+                {#<th>Updatedat</th>#}
+                {#<th>Actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for article in articles %}#}
+            {#<tr>#}
+                {#<td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>#}
+                {#<td>{{ article.nom }}</td>#}
+                {#<td>{{ article.prix }}</td>#}
+                {#<td>{{ article.description }}</td>#}
+                {#<td>{{ article.image }}</td>#}
+                {#<td>{% if article.createdAt %}{{ article.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                {#<td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('article_show', { 'id': article.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('article_edit', { 'id': article.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('article_new') }}">Create a new article</a>#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}

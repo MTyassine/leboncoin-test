@@ -6,6 +6,7 @@ use CommercialBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 /**
@@ -56,8 +57,8 @@ class ArticleController extends Controller
 
             $article->setImage($fileName);
 
-
-
+            $article->setCreatedAt(new \DateTime());
+            $article->setUpdatedAt(new \DateTime());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
@@ -80,7 +81,7 @@ class ArticleController extends Controller
     {
         $deleteForm = $this->createDeleteForm($article);
 
-        return $this->render('article/show.html.twig', array(
+        return $this->render('CommercialBundle:article:show.html.twig', array(
             'article' => $article,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -97,6 +98,7 @@ class ArticleController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $article->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('article_edit', array('id' => $article->getId()));

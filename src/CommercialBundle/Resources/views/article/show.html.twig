@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ article.image }}</td>
+                <td><img src="{{ asset('uploads/article/' ~ article.getimage()) }}" style="width:150px;height:150px;margin-right:10px"/></td>
             </tr>
             <tr>
                 <th>Createdat</th>
@@ -36,17 +36,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('article_edit', { 'id': article.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
 {% endblock %}
