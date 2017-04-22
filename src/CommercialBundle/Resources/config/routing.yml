@@ -5,6 +5,11 @@ commercial_article:
 commercial_CategorieArticle:
     resource: "@CommercialBundle/Resources/config/routing/categoriearticle.yml"
     prefix:   /categoriearticle
+
 commercial_homepage:
     path:     /
     defaults: { _controller: CommercialBundle:Default:index }
+
+commercial_contact:
+    path:     /article/{id}/conatct
+    defaults: { _controller: CommercialBundle:Default:mailArticle }

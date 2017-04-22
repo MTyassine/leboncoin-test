@@ -36,5 +36,63 @@
         </tbody>
     </table>
 
+<br><br>
 
+    <div class="panel panel-default">
+        <div class="row">
+            <div class="col-md-6"><input type="text" id="nom" placeholder="nom"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><input type="text" id="prenom" placeholder="prenom"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><input type="text" id="mail" placeholder="mail"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><input type="text" id="tel" placeholder="telephone"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><input type="text" id="msg" placeholder="message"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><button onclick="contact()" >envoyer</button></div>
+        </div>
+    </div>
 {% endblock %}
+
+{% block js %}
+    <script>
+//fonction d'envoie de mail au proprietaire de l'article
+        function contact() {
+            var nom = $('#nom').val();
+            var prenom = $('#prenom').val();
+            var mail = $('#mail').val();
+            var tel = $('#tel').val();
+            var msg = $('#msg').val();
+
+            $.ajax({
+                type: "POST",
+                url: "{{ path('article_index') }}",
+                data: {
+                    'nom': nom,
+                    'prenom': prenom,
+                    'mail': mail,
+                    'tel': tel,
+                    'msg': msg,
+                    'id' : {{ article.id }}
+                },
+                success: function(data, dataType)
+                {
+                    alert("success");
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert('Error : ' + errorThrown);
+                }
+            })
+        }
+
+
+    </script>
+{% endblock %}
+

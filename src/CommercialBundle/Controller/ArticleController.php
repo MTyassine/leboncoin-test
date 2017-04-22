@@ -50,7 +50,10 @@ class ArticleController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // $file stores the uploaded PDF file
+
+            $article->setUser($this->get('security.token_storage')->getToken()->getUser());
+
+            // $file stores the uploaded image file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $article->getImage();
 
