@@ -1,3 +1,14 @@
+Leboncoin-test
+========================
+
+c'est un test technique en symfony 2.8
+il s'agit de reproduire les fonction principale du site leboncoin.fr
+il contien :
+- un module de gestion d'utilisateur realiser avec FOSUserBundle
+- un module de gestion d'article suivant leur categorie
+- un systeme de contact en utilisant le bundle Swifmailer
+
+
 Symfony Standard Edition
 ========================
 
