@@ -1,0 +1,7 @@
+commercial_article:
+    resource: "@CommercialBundle/Resources/config/routing/article.yml"
+    prefix:   /article
+
+commercial_homepage:
+    path:     /
+    defaults: { _controller: CommercialBundle:Default:index }
